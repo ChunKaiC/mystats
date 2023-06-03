@@ -55,6 +55,8 @@ class LoginView extends StatelessWidget {
                   child: TextButton(
                     onPressed: () {
                       debugPrint('Google login');
+                      Navigator.pushNamedAndRemoveUntil(
+                          context, '/home_view', (route) => false);
                     },
                     style: TextButton.styleFrom(
                       shape: RoundedRectangleBorder(

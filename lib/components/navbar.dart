@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 class Navbar extends StatefulWidget {
   const Navbar({super.key});
@@ -25,7 +26,7 @@ class _NavbarState extends State<Navbar> {
       unselectedLabelStyle: GoogleFonts.roboto(color: Colors.black),
       items: const <BottomNavigationBarItem>[
         BottomNavigationBarItem(
-          icon: Icon(Icons.sports),
+          icon: FaIcon(FontAwesomeIcons.dumbbell),
           label: 'Training',
         ),
         BottomNavigationBarItem(

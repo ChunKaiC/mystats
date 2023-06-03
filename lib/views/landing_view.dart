@@ -59,6 +59,7 @@ class LandingView extends StatelessWidget {
                   child: TextButton(
                     onPressed: () {
                       debugPrint('Sign Up');
+                      Navigator.pushNamed(context, '/sign_up_view');
                     },
                     style: TextButton.styleFrom(
                       shape: RoundedRectangleBorder(

@@ -41,7 +41,7 @@ class MyApp extends StatelessWidget {
           '/landing_view': (context) => const LandingView(),
           '/login_view': (context) => const LoginView(),
           '/sign_up_view': (context) => const SignUpView(),
-          '/home_view': (context) => HomeView(),
+          '/home_view': (context) => MainAppView(),
         },
       ),
     );

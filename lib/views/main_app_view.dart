@@ -4,6 +4,8 @@ import 'package:mystats/components/navbar.dart';
 import 'package:provider/provider.dart';
 
 class MainAppView extends StatefulWidget {
+  const MainAppView({super.key});
+
   @override
   State<MainAppView> createState() => _MainAppViewState();
 }

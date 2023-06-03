@@ -104,13 +104,13 @@ class Logo extends StatelessWidget {
                 child: Icon(
                   Icons.ssid_chart_rounded,
                   color: Colors.white,
-                  size: 50,
+                  size: 55,
                 ),
               ),
               TextSpan(
                 text: 'mystats',
                 style: GoogleFonts.koulen(
-                    height: .1, fontSize: 60, color: Colors.white),
+                    height: .1, fontSize: 65, color: Colors.white),
               ),
             ],
           ),

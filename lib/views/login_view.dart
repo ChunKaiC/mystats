@@ -42,7 +42,7 @@ class LoginView extends StatelessWidget {
                         'Welcome\nBack',
                         textAlign: TextAlign.justify,
                         style: GoogleFonts.koulen(
-                            fontSize: 60, color: Colors.white, height: 1),
+                            fontSize: 65, color: Colors.white, height: 1),
                       ),
                     ),
                   ],

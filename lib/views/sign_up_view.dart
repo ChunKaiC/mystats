@@ -6,22 +6,6 @@ import 'dart:ui' as ui;
 import 'package:mystats/managers/profile_manager.dart';
 import 'package:flutter_easyloading/flutter_easyloading.dart';
 
-void configLoading() {
-  EasyLoading.instance
-    ..displayDuration = const Duration(milliseconds: 2000)
-    ..indicatorType = EasyLoadingIndicatorType.fadingCircle
-    ..loadingStyle = EasyLoadingStyle.dark
-    ..indicatorSize = 45.0
-    ..radius = 10.0
-    ..progressColor = Colors.yellow
-    ..backgroundColor = Colors.green
-    ..indicatorColor = Colors.yellow
-    ..textColor = Colors.yellow
-    ..maskColor = Colors.blue.withOpacity(0.5)
-    ..userInteractions = true
-    ..dismissOnTap = false;
-}
-
 class SignUpView extends StatefulWidget {
   const SignUpView({super.key});
 
@@ -38,55 +22,55 @@ class _SignUpViewState extends State<SignUpView> {
 
     final buttonSize = MediaQuery.of(context).size.width * .7;
     final padding = (MediaQuery.of(context).size.width - buttonSize) / 2 + 5;
-    final screenHeightWithoutSafeArea = MediaQuery.of(context).size.height -
-        MediaQueryData.fromWindow(ui.window).padding.top;
 
     return Scaffold(
+      appBar: AppBar(
+        leadingWidth: MediaQuery.of(context).size.width * .2,
+        elevation: 0,
+        backgroundColor: Colors.blue[900]!,
+      ),
       resizeToAvoidBottomInset: false,
-      body: Container(
-        color: Colors.blue[900]!,
-        child: SafeArea(
-          bottom: false,
-          child: Container(
-            clipBehavior: Clip.none,
-            width: double.infinity,
-            height: screenHeightWithoutSafeArea,
-            decoration: BoxDecoration(
-              gradient: LinearGradient(
-                colors: [
-                  Colors.blue[900]!,
-                  Colors.blue[900]!,
-                  Colors.blue[700]!,
-                  Colors.blue[500]!,
-                  Colors.blue[200]!,
-                  Colors.white,
-                ],
-                begin: Alignment.topCenter,
-                end: Alignment.bottomCenter,
+      body: SafeArea(
+        bottom: false,
+        child: Container(
+          clipBehavior: Clip.none,
+          width: double.infinity,
+          height: double.infinity,
+          decoration: BoxDecoration(
+            gradient: LinearGradient(
+              colors: [
+                Colors.blue[900]!,
+                Colors.blue[900]!,
+                Colors.blue[700]!,
+                Colors.blue[500]!,
+                Colors.blue[200]!,
+                Colors.white,
+              ],
+              begin: Alignment.topCenter,
+              end: Alignment.bottomCenter,
+            ),
+          ),
+          child: Column(children: [
+            const Flexible(
+                child: FractionallySizedBox(
+              heightFactor: .50,
+            )),
+            Container(
+              alignment: Alignment.centerLeft,
+              padding: EdgeInsets.fromLTRB(padding, 0, padding, 0),
+              child: Text(
+                'Create\nAccount',
+                textAlign: TextAlign.justify,
+                style: GoogleFonts.koulen(
+                    fontSize: 65, color: Colors.white, height: 1),
               ),
             ),
-            child: Column(children: [
-              const Flexible(
-                  child: FractionallySizedBox(
-                heightFactor: .8,
-              )),
-              Container(
-                alignment: Alignment.centerLeft,
-                padding: EdgeInsets.fromLTRB(padding, 0, padding, 0),
-                child: Text(
-                  'Create\nAccount',
-                  textAlign: TextAlign.justify,
-                  style: GoogleFonts.koulen(
-                      fontSize: 65, color: Colors.white, height: 1),
-                ),
-              ),
-              const Flexible(
-                  child: FractionallySizedBox(
-                heightFactor: .01,
-              )),
-              SignUpForm(),
-            ]),
-          ),
+            const Flexible(
+                child: FractionallySizedBox(
+              heightFactor: .1,
+            )),
+            SignUpForm(),
+          ]),
         ),
       ),
     );
@@ -105,7 +89,10 @@ class _SignUpFormState extends State<SignUpForm> {
   final passwordController1 = TextEditingController(text: '');
   final passwordController2 = TextEditingController(text: '');
   final _formKey = GlobalKey<FormState>();
+
   final textStyle = GoogleFonts.roboto(color: Colors.white, fontSize: 16);
+  final hintStyle = GoogleFonts.roboto(color: Colors.white70, fontSize: 16);
+  final erroStyle = GoogleFonts.roboto(color: Colors.red, fontSize: 14);
 
   @override
   Widget build(BuildContext context) {
@@ -118,6 +105,7 @@ class _SignUpFormState extends State<SignUpForm> {
             SizedBox(
               height: 55,
               child: TextFormField(
+                style: textStyle,
                 cursorColor: Colors.white,
                 controller: emailController,
                 keyboardType: TextInputType.emailAddress,
@@ -131,12 +119,16 @@ class _SignUpFormState extends State<SignUpForm> {
                   FocusScope.of(context).unfocus();
                 },
                 textInputAction: TextInputAction.next,
-                decoration: InputDecoration(hintText: 'Enter your email'),
+                decoration: InputDecoration(
+                    hintText: 'Enter your email',
+                    hintStyle: hintStyle,
+                    errorStyle: erroStyle),
               ),
             ),
             SizedBox(
               height: 55,
               child: TextFormField(
+                style: textStyle,
                 cursorColor: Colors.white,
                 controller: passwordController1,
                 keyboardType: TextInputType.visiblePassword,
@@ -152,13 +144,16 @@ class _SignUpFormState extends State<SignUpForm> {
                   FocusScope.of(context).unfocus();
                 },
                 textInputAction: TextInputAction.next,
-                decoration:
-                    const InputDecoration(hintText: 'Enter your password'),
+                decoration: InputDecoration(
+                    hintText: 'Enter your password',
+                    hintStyle: hintStyle,
+                    errorStyle: erroStyle),
               ),
             ),
             SizedBox(
               height: 55,
               child: TextFormField(
+                style: textStyle,
                 cursorColor: Colors.white,
                 keyboardType: TextInputType.visiblePassword,
                 validator: (value) {
@@ -174,7 +169,10 @@ class _SignUpFormState extends State<SignUpForm> {
                   FocusScope.of(context).unfocus();
                 },
                 textInputAction: TextInputAction.done,
-                decoration: const InputDecoration(hintText: 'Repeat password'),
+                decoration: InputDecoration(
+                    hintText: 'Repeat password',
+                    hintStyle: hintStyle,
+                    errorStyle: erroStyle),
               ),
             ),
             const SizedBox(height: 10),

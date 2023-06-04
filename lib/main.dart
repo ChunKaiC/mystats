@@ -1,3 +1,4 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/services.dart';
@@ -29,6 +30,8 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle.light);
 
+    final user = FirebaseAuth.instance.currentUser;
+
     return MultiProvider(
       providers: [ChangeNotifierProvider(create: (_) => NavbarProvider())],
       child: MaterialApp(
@@ -38,7 +41,7 @@ class MyApp extends StatelessWidget {
             systemOverlayStyle: SystemUiOverlayStyle.light,
           ),
         ),
-        initialRoute: '/landing_view',
+        initialRoute: user == null ? '/landing_view' : '/main_app_view',
         routes: {
           '/landing_view': (context) => const LandingView(),
           '/sign_up_view': (context) => const SignUpView(),

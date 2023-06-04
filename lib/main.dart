@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:mystats/components/navbar.dart';
 import 'package:mystats/views/main_app_view.dart';
 import 'package:mystats/views/landing_view.dart';
-import 'package:mystats/views/login_view.dart';
 import 'package:mystats/views/sign_up_view.dart';
 import 'package:provider/provider.dart';
 import 'firebase_options.dart';
@@ -15,6 +15,9 @@ Future<void> main() async {
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
   );
+  SystemChrome.setPreferredOrientations([
+    DeviceOrientation.portraitUp,
+  ]);
 
   runApp(const MyApp());
 }
@@ -29,6 +32,7 @@ class MyApp extends StatelessWidget {
     return MultiProvider(
       providers: [ChangeNotifierProvider(create: (_) => NavbarProvider())],
       child: MaterialApp(
+        builder: EasyLoading.init(),
         theme: ThemeData(
           appBarTheme: const AppBarTheme(
             systemOverlayStyle: SystemUiOverlayStyle.light,
@@ -37,9 +41,8 @@ class MyApp extends StatelessWidget {
         initialRoute: '/landing_view',
         routes: {
           '/landing_view': (context) => const LandingView(),
-          '/login_view': (context) => const LoginView(),
           '/sign_up_view': (context) => const SignUpView(),
-          '/home_view': (context) => const MainAppView(),
+          '/main_app_view': (context) => const MainAppView(),
         },
       ),
     );

@@ -31,6 +31,7 @@ class MyApp extends StatelessWidget {
     SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle.light);
 
     final user = FirebaseAuth.instance.currentUser;
+    final initialRoute = user == null ? '/landing_view' : '/main_app_view';
 
     return MultiProvider(
       providers: [ChangeNotifierProvider(create: (_) => NavbarProvider())],
@@ -41,7 +42,7 @@ class MyApp extends StatelessWidget {
             systemOverlayStyle: SystemUiOverlayStyle.light,
           ),
         ),
-        initialRoute: user == null ? '/landing_view' : '/main_app_view',
+        initialRoute: '/landing_view',
         routes: {
           '/landing_view': (context) => const LandingView(),
           '/sign_up_view': (context) => const SignUpView(),

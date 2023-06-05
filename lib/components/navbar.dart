@@ -21,7 +21,7 @@ class _NavbarState extends State<Navbar> {
         (navbarProvider) => navbarProvider.selectedIndex);
 
     return BottomNavigationBar(
-      type: BottomNavigationBarType.shifting,
+      type: BottomNavigationBarType.fixed,
       showUnselectedLabels: true,
       unselectedItemColor: Colors.black,
       unselectedLabelStyle: GoogleFonts.roboto(color: Colors.black),
@@ -40,7 +40,7 @@ class _NavbarState extends State<Navbar> {
         ),
         BottomNavigationBarItem(
           icon: Icon(Icons.leaderboard),
-          label: 'Leaderboard',
+          label: 'Ranking',
         ),
         BottomNavigationBarItem(
           icon: Icon(

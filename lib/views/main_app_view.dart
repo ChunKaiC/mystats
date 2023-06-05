@@ -1,6 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:mystats/components/navbar.dart';
+import 'package:mystats/views/main_app_pages/calories_page.dart';
+import 'package:mystats/views/main_app_pages/profile_page.dart';
+import 'package:mystats/views/main_app_pages/ranking_page.dart';
+import 'package:mystats/views/main_app_pages/summary_page.dart';
+import 'package:mystats/views/main_app_pages/training_page.dart';
 import 'package:provider/provider.dart';
 
 class MainAppView extends StatefulWidget {
@@ -44,112 +49,12 @@ class _MainAppViewState extends State<MainAppView> {
           child: PageView(
             physics: const NeverScrollableScrollPhysics(),
             controller: pageController,
-            children: <Widget>[
-              Container(
-                decoration: BoxDecoration(
-                  gradient: LinearGradient(
-                    colors: [
-                      Colors.blue[900]!,
-                      Colors.blue[900]!,
-                      Colors.blue[700]!,
-                      Colors.blue[500]!,
-                      Colors.blue[200]!,
-                      Colors.white,
-                    ],
-                    begin: Alignment.topCenter,
-                    end: Alignment.bottomCenter,
-                  ),
-                ),
-                child: Center(
-                    child: Text(
-                  'Training Page',
-                  style: GoogleFonts.roboto(color: Colors.white),
-                )),
-              ),
-              Container(
-                decoration: BoxDecoration(
-                  gradient: LinearGradient(
-                    colors: [
-                      Colors.blue[900]!,
-                      Colors.blue[900]!,
-                      Colors.blue[700]!,
-                      Colors.blue[500]!,
-                      Colors.blue[200]!,
-                      Colors.white,
-                    ],
-                    begin: Alignment.topCenter,
-                    end: Alignment.bottomCenter,
-                  ),
-                ),
-                child: Center(
-                    child: Text(
-                  'Calories Page',
-                  style: GoogleFonts.roboto(color: Colors.white),
-                )),
-              ),
-              Container(
-                decoration: BoxDecoration(
-                  gradient: LinearGradient(
-                    colors: [
-                      Colors.blue[900]!,
-                      Colors.blue[900]!,
-                      Colors.blue[700]!,
-                      Colors.blue[500]!,
-                      Colors.blue[200]!,
-                      Colors.white,
-                    ],
-                    begin: Alignment.topCenter,
-                    end: Alignment.bottomCenter,
-                  ),
-                ),
-                child: Center(
-                    child: Text(
-                  'Summary Page',
-                  style: GoogleFonts.roboto(color: Colors.white),
-                )),
-              ),
-              Container(
-                decoration: BoxDecoration(
-                  gradient: LinearGradient(
-                    colors: [
-                      Colors.blue[900]!,
-                      Colors.blue[900]!,
-                      Colors.blue[700]!,
-                      Colors.blue[500]!,
-                      Colors.blue[200]!,
-                      Colors.white,
-                    ],
-                    begin: Alignment.topCenter,
-                    end: Alignment.bottomCenter,
-                  ),
-                ),
-                child: Center(
-                    child: Text(
-                  'Leaderboard Page',
-                  style: GoogleFonts.roboto(color: Colors.white),
-                )),
-              ),
-              Container(
-                decoration: BoxDecoration(
-                  gradient: LinearGradient(
-                    colors: [
-                      Colors.blue[900]!,
-                      Colors.blue[900]!,
-                      Colors.blue[700]!,
-                      Colors.blue[500]!,
-                      Colors.blue[200]!,
-                      Colors.white,
-                    ],
-                    begin: Alignment.topCenter,
-                    end: Alignment.bottomCenter,
-                  ),
-                ),
-                child: Center(
-                    child: Text(
-                  'Profile Page',
-                  style: GoogleFonts.roboto(color: Colors.white),
-                )),
-              ),
+            children: [
+              TrainingPage(),
+              CaloriesPage(),
+              SummaryPage(),
+              RankingPage(),
+              ProfilePage(),
             ],
           ),
         ),

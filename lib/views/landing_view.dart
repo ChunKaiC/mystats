@@ -148,7 +148,7 @@ class _SignInFormState extends State<SignInForm> {
                           'Incorrect credentials, try again!');
                     } else {
                       Navigator.pushNamedAndRemoveUntil(
-                          context, 'main_app_view', (route) => false);
+                          context, '/main_app_view', (route) => false);
                     }
                   }
                 },
@@ -175,8 +175,10 @@ class _SignInFormState extends State<SignInForm> {
               ),
             ),
             GestureDetector(
-              onTap: () {
+              onTap: () async {
                 debugPrint('Forgot password ');
+                await ProfileManager.resetPasswordForEmail(
+                    email: emailController.text);
               },
               child: Container(
                 // color: Colors.red,

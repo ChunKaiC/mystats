@@ -63,4 +63,14 @@ class ProfileManager {
     }
     return null;
   }
+
+  static Future<void> resetPasswordForEmail({required String email}) async {
+    try {
+      await FirebaseAuth.instance.sendPasswordResetEmail(email: email);
+      print('sent');
+      return;
+    } catch (e) {
+      print(e);
+    }
+  }
 }

@@ -6,13 +6,10 @@ class ProfilePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Expanded(
-      child: Container(
-        child: Center(
-            child: Text(
-          'Profile Page',
-          style: GoogleFonts.roboto(color: Colors.white),
-        )),
+    return Center(
+      child: Text(
+        'Profile Page',
+        style: GoogleFonts.roboto(color: Colors.white),
       ),
     );
   }

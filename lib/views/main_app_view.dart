@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:mystats/components/navbar.dart';
-import 'package:mystats/views/main_app_pages/diary_page.dart';
+import 'package:mystats/views/main_app_pages/journal_page.dart';
 import 'package:mystats/views/main_app_pages/profile_page.dart';
 import 'package:mystats/views/main_app_pages/ranking_page.dart';
 import 'package:mystats/views/main_app_pages/summary_page.dart';

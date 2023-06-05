@@ -6,13 +6,10 @@ class RankingPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Expanded(
-      child: Container(
-        child: Center(
-            child: Text(
-          'Ranking Page',
-          style: GoogleFonts.roboto(color: Colors.white),
-        )),
+    return Center(
+      child: Text(
+        'Ranking Page',
+        style: GoogleFonts.roboto(color: Colors.white),
       ),
     );
   }

@@ -1,3 +1,4 @@
+
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
@@ -6,13 +7,10 @@ class JournalPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Expanded(
-      child: Container(
-        child: Center(
-            child: Text(
-          'Journal Page',
-          style: GoogleFonts.roboto(color: Colors.white),
-        )),
+    return Center(
+      child: Text(
+        'Journal Page',
+        style: GoogleFonts.roboto(color: Colors.white),
       ),
     );
   }

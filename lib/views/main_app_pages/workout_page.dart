@@ -6,13 +6,10 @@ class SplitPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Expanded(
-      child: Container(
-        child: Center(
-            child: Text(
-          'Split Page',
-          style: GoogleFonts.roboto(color: Colors.white),
-        )),
+    return Center(
+      child: Text(
+        'Split Page',
+        style: GoogleFonts.roboto(color: Colors.white),
       ),
     );
   }

@@ -42,7 +42,7 @@ class MyApp extends StatelessWidget {
             systemOverlayStyle: SystemUiOverlayStyle.light,
           ),
         ),
-        initialRoute: '/landing_view',
+        initialRoute: initialRoute,
         routes: {
           '/landing_view': (context) => const LandingView(),
           '/sign_up_view': (context) => const SignUpView(),

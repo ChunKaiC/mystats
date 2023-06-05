@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-class CaloriesPage extends StatelessWidget {
-  const CaloriesPage({super.key});
+class SplitPage extends StatelessWidget {
+  const SplitPage({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -10,7 +10,7 @@ class CaloriesPage extends StatelessWidget {
       child: Container(
         child: Center(
             child: Text(
-          'Calories Page',
+          'Split Page',
           style: GoogleFonts.roboto(color: Colors.white),
         )),
       ),

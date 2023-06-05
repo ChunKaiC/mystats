@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-class TrainingPage extends StatelessWidget {
-  const TrainingPage({super.key});
+class JournalPage extends StatelessWidget {
+  const JournalPage({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -10,7 +10,7 @@ class TrainingPage extends StatelessWidget {
       child: Container(
         child: Center(
             child: Text(
-          'Training Page',
+          'Journal Page',
           style: GoogleFonts.roboto(color: Colors.white),
         )),
       ),

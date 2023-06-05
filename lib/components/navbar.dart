@@ -27,12 +27,12 @@ class _NavbarState extends State<Navbar> {
       unselectedLabelStyle: GoogleFonts.roboto(color: Colors.black),
       items: const <BottomNavigationBarItem>[
         BottomNavigationBarItem(
-          icon: FaIcon(FontAwesomeIcons.dumbbell),
-          label: 'Training',
+          icon: Icon(Icons.menu_book),
+          label: 'Journal',
         ),
         BottomNavigationBarItem(
-          icon: FaIcon(FontAwesomeIcons.utensils),
-          label: 'Calories',
+          icon: FaIcon(FontAwesomeIcons.dumbbell),
+          label: 'Split',
         ),
         BottomNavigationBarItem(
           icon: Icon(Icons.insert_chart),

@@ -1,11 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
 import 'package:mystats/components/navbar.dart';
-import 'package:mystats/views/main_app_pages/calories_page.dart';
+import 'package:mystats/views/main_app_pages/diary_page.dart';
 import 'package:mystats/views/main_app_pages/profile_page.dart';
 import 'package:mystats/views/main_app_pages/ranking_page.dart';
 import 'package:mystats/views/main_app_pages/summary_page.dart';
-import 'package:mystats/views/main_app_pages/training_page.dart';
+import 'package:mystats/views/main_app_pages/workout_page.dart';
 import 'package:provider/provider.dart';
 
 class MainAppView extends StatefulWidget {
@@ -63,8 +62,8 @@ class _MainAppViewState extends State<MainAppView> {
             physics: const NeverScrollableScrollPhysics(),
             controller: pageController,
             children: [
-              TrainingPage(),
-              CaloriesPage(),
+              JournalPage(),
+              SplitPage(),
               SummaryPage(),
               RankingPage(),
               ProfilePage(),

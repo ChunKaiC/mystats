@@ -44,7 +44,20 @@ class _MainAppViewState extends State<MainAppView> {
     return Scaffold(
       bottomNavigationBar: const Navbar(),
       body: Container(
-        color: Colors.blue[900]!,
+        decoration: BoxDecoration(
+          gradient: LinearGradient(
+            colors: [
+              Colors.blue[900]!,
+              Colors.blue[900]!,
+              Colors.blue[700]!,
+              Colors.blue[500]!,
+              Colors.blue[200]!,
+              Colors.white,
+            ],
+            begin: Alignment.topCenter,
+            end: Alignment.bottomCenter,
+          ),
+        ),
         child: SafeArea(
           child: PageView(
             physics: const NeverScrollableScrollPhysics(),

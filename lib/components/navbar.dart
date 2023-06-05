@@ -31,7 +31,7 @@ class _NavbarState extends State<Navbar> {
           label: 'Training',
         ),
         BottomNavigationBarItem(
-          icon: Icon(Icons.fastfood_rounded),
+          icon: FaIcon(FontAwesomeIcons.utensils),
           label: 'Calories',
         ),
         BottomNavigationBarItem(

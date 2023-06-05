@@ -73,4 +73,8 @@ class ProfileManager {
       print(e);
     }
   }
+
+  static Future<void> signOut() async {
+    await FirebaseAuth.instance.signOut();
+  }
 }

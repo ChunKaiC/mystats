@@ -1,10 +1,8 @@
-import 'package:email_validator/email_validator.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:mystats/managers/profile_manager.dart';
-import 'dart:ui' as ui;
 
 class LandingView extends StatefulWidget {
   const LandingView({super.key});
@@ -95,6 +93,7 @@ class _SignInFormState extends State<SignInForm> {
                   if (value == null || value.isEmpty) {
                     return 'Enter your email';
                   }
+                  return null;
                 },
                 cursorColor: Colors.white,
                 controller: emailController,
@@ -117,6 +116,7 @@ class _SignInFormState extends State<SignInForm> {
                   if (value == null || value.isEmpty) {
                     return 'Enter your password';
                   }
+                  return null;
                 },
                 cursorColor: Colors.white,
                 controller: passwordController,

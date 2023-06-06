@@ -32,8 +32,6 @@ class ProfileManager {
         email: email,
         password: password,
       );
-      final credentialForLinking =
-          EmailAuthProvider.credential(email: email, password: password);
 
       return credential;
     } on FirebaseAuthException catch (e) {

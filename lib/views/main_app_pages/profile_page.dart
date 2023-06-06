@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
 import 'package:mystats/managers/profile_manager.dart';
 
 class ProfilePage extends StatelessWidget {
@@ -7,22 +6,64 @@ class ProfilePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Center(
-      child: Column(
-        children: [
-          Text(
-            'Profile Page',
-            style: GoogleFonts.roboto(color: Colors.white),
+    return ListView(
+      children: [
+        Container(
+          width: double.infinity,
+          height: 200,
+          margin: EdgeInsets.fromLTRB(10, 10, 10, 10),
+          decoration: BoxDecoration(
+              color: Colors.white, borderRadius: BorderRadius.circular(10)),
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              TextButton(
+                onPressed: () async {
+                  Navigator.pushNamedAndRemoveUntil(
+                      context, '/landing_view', (route) => false);
+                  await ProfileManager.signOut();
+                },
+                child: Text('Sign out'),
+              ),
+            ],
           ),
-          TextButton(
-              onPressed: () async {
-                Navigator.pushNamedAndRemoveUntil(
-                    context, '/landing_view', (route) => false);
-                await ProfileManager.signOut();
-              },
-              child: Text('Sign out'))
-        ],
-      ),
+        ),
+        Container(
+          width: double.infinity,
+          height: 100,
+          margin: EdgeInsets.fromLTRB(10, 10, 10, 10),
+          decoration: BoxDecoration(
+              color: Colors.white, borderRadius: BorderRadius.circular(10)),
+        ),
+        Container(
+          width: double.infinity,
+          height: 100,
+          margin: EdgeInsets.fromLTRB(10, 10, 10, 10),
+          decoration: BoxDecoration(
+              color: Colors.white, borderRadius: BorderRadius.circular(10)),
+        ),
+        Container(
+          width: double.infinity,
+          height: 100,
+          margin: EdgeInsets.fromLTRB(10, 10, 10, 10),
+          decoration: BoxDecoration(
+              color: Colors.white, borderRadius: BorderRadius.circular(10)),
+        ),
+        Container(
+          width: double.infinity,
+          height: 100,
+          margin: EdgeInsets.fromLTRB(10, 10, 10, 10),
+          decoration: BoxDecoration(
+              color: Colors.white, borderRadius: BorderRadius.circular(10)),
+        ),
+        Container(
+          width: double.infinity,
+          height: 100,
+          margin: EdgeInsets.fromLTRB(10, 10, 10, 10),
+          decoration: BoxDecoration(
+              color: Colors.white, borderRadius: BorderRadius.circular(10)),
+        ),
+      ],
     );
   }
 }

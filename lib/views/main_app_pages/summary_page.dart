@@ -54,7 +54,7 @@ class SummaryPage extends StatelessWidget {
                 ZoomPanBehavior(enablePinching: true, enablePanning: true),
             primaryXAxis: NumericAxis(),
             // Chart title
-            title: ChartTitle(text: 'Weight Graph'),
+            title: ChartTitle(text: 'Body Graph'),
             // Enable legend
             // legend: Legend(isVisible: true),
             // Enable tooltip
@@ -82,7 +82,7 @@ class SummaryPage extends StatelessWidget {
             borderColor: Colors.amber,
             primaryXAxis: NumericAxis(),
             // Chart title
-            title: ChartTitle(text: 'Calories Graph'),
+            title: ChartTitle(text: 'Nutrition Graph'),
             // Enable legend
             // legend: Legend(isVisible: true),
             // Enable tooltip
@@ -109,7 +109,7 @@ class SummaryPage extends StatelessWidget {
                 ZoomPanBehavior(enablePinching: true, enablePanning: true),
             primaryXAxis: NumericAxis(),
             // Chart title
-            title: ChartTitle(text: 'Weight Graph'),
+            title: ChartTitle(text: 'Training Graph'),
             // Enable legend
             // legend: Legend(isVisible: true),
             // Enable tooltip

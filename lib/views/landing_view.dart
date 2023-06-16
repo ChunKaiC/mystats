@@ -288,7 +288,7 @@ class Logo extends StatelessWidget {
                 ),
               ),
               TextSpan(
-                text: 'mystats',
+                text: 'gymstats',
                 style: GoogleFonts.koulen(
                     height: .1, fontSize: 70, color: Colors.white),
               ),

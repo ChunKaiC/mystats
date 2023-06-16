@@ -46,12 +46,6 @@ class _MainAppViewState extends State<MainAppView> {
         decoration: BoxDecoration(
           gradient: LinearGradient(
             colors: [
-              // Colors.blue[900]!,
-              // Colors.blue[900]!,
-              // Colors.blue[700]!,
-              // Colors.blue[500]!,
-              // Colors.blue[200]!,
-              // Colors.white,
               Colors.blue[900]!,
               Colors.blue[900]!,
               Colors.blue[900]!,

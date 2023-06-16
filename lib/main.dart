@@ -34,7 +34,10 @@ class MyApp extends StatelessWidget {
     final initialRoute = user == null ? '/landing_view' : '/main_app_view';
 
     return MultiProvider(
-      providers: [ChangeNotifierProvider(create: (_) => NavbarProvider())],
+      providers: [
+        ChangeNotifierProvider(
+            create: (_) => NavbarProvider()..selectedIndex = 0)
+      ],
       child: MaterialApp(
         builder: EasyLoading.init(),
         theme: ThemeData(

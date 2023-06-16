@@ -2,38 +2,71 @@ import 'package:flutter/material.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:intl/intl.dart';
+import 'package:syncfusion_flutter_calendar/calendar.dart';
 
-class JournalPage extends StatelessWidget {
+class JournalPage extends StatefulWidget {
   const JournalPage({super.key});
 
   @override
-  Widget build(BuildContext context) {
-    return Container(
-      margin: const EdgeInsets.fromLTRB(0, 10, 0, 0),
-      child: Center(
-          child: CarouselSlider.builder(
-        itemCount: 20,
-        itemBuilder: (context, index, realIndex) {
-          final dateTime = DateTime.now().add(Duration(days: index));
+  State<JournalPage> createState() => _JournalPageState();
+}
 
-          return JournalEntryPage(
-            datetime: dateTime,
-          );
-        },
-        options: CarouselOptions(
-            enableInfiniteScroll: false,
-            viewportFraction: .92,
-            enlargeCenterPage: true,
-            enlargeFactor: .15,
-            height: double.infinity),
-      )),
+class _JournalPageState extends State<JournalPage> {
+  final CarouselController carouselController = CarouselController();
+  final int _itemCount = 3;
+  late DateTime date;
+  int currentIndex = 1;
+  int previousIndex = 1;
+
+  @override
+  void initState() {
+    super.initState();
+    final today = DateTime.now();
+    date = DateTime(today.year, today.month, today.day);
+  }
+
+  void _onPageChanged(int currentIndex, CarouselPageChangedReason reason) {
+    setState(() {
+      // Scroll right
+      if (currentIndex == ((previousIndex + 1) % _itemCount)) {
+        date = date.add(const Duration(days: 1));
+      }
+      // Scroll left
+      else {
+        date = date.subtract(const Duration(days: 1));
+      }
+      previousIndex = currentIndex;
+    });
+  }
+
+  Widget _itemBuilder(BuildContext context, int index, int realIndex) {
+    return JournalEntryPage(
+      datetime: date,
+    );
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    final CarouselOptions options = CarouselOptions(
+      initialPage: currentIndex,
+      onPageChanged: _onPageChanged,
+      enableInfiniteScroll: true,
+      viewportFraction: .92,
+      enlargeCenterPage: true,
+      enlargeFactor: .15,
+      height: double.infinity,
+    );
+
+    return CarouselSlider.builder(
+      itemCount: _itemCount,
+      itemBuilder: _itemBuilder,
+      options: options,
     );
   }
 }
 
 class JournalEntryPage extends StatelessWidget {
   final DateTime datetime;
-
   const JournalEntryPage({super.key, required this.datetime});
 
   @override
@@ -60,54 +93,68 @@ class JournalEntryPage extends StatelessWidget {
           Expanded(
             child: ListView(
               children: [
-                Container(
-                  height: 100,
-                  width: double.infinity,
-                  margin: EdgeInsets.fromLTRB(10, 0, 10, 5),
-                  decoration: BoxDecoration(
-                      color: Colors.blue,
-                      borderRadius: BorderRadius.circular(10)),
-                  child: Center(
-                    child: Text('Some information here'),
-                  ),
-                ),
-                Container(
-                  height: 300,
-                  width: double.infinity,
-                  margin: EdgeInsets.fromLTRB(10, 5, 10, 5),
-                  decoration: BoxDecoration(
-                      color: Colors.blue,
-                      borderRadius: BorderRadius.circular(10)),
-                  child: Center(
-                    child: Text('Body'),
-                  ),
-                ),
-                Container(
-                  height: 300,
-                  width: double.infinity,
-                  margin: EdgeInsets.fromLTRB(10, 5, 10, 5),
-                  decoration: BoxDecoration(
-                      color: Colors.blue,
-                      borderRadius: BorderRadius.circular(10)),
-                  child: Center(
-                    child: Text('Nutrition'),
-                  ),
-                ),
-                Container(
-                  height: 300,
-                  width: double.infinity,
-                  margin: EdgeInsets.fromLTRB(10, 5, 10, 5),
-                  decoration: BoxDecoration(
-                      color: Colors.blue,
-                      borderRadius: BorderRadius.circular(10)),
-                  child: Center(
-                    child: Text('Training'),
-                  ),
-                ),
+                InfoCard(),
+                BodyCard(),
+                NutritionCard(),
+                TrainingCard(),
               ],
             ),
           ),
         ],
+      ),
+    );
+  }
+}
+
+class InfoCard extends StatelessWidget {
+  const InfoCard({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      height: 100,
+      width: double.infinity,
+      margin: const EdgeInsets.fromLTRB(10, 0, 10, 5),
+      decoration: BoxDecoration(
+          color: Colors.blue, borderRadius: BorderRadius.circular(10)),
+      child: Center(
+        child: Text('Some information here'),
+      ),
+    );
+  }
+}
+
+class BodyCard extends StatelessWidget {
+  const BodyCard({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      height: 300,
+      width: double.infinity,
+      margin: const EdgeInsets.fromLTRB(10, 5, 10, 5),
+      decoration: BoxDecoration(
+          color: Colors.blue, borderRadius: BorderRadius.circular(10)),
+      child: Center(
+        child: Text('Body'),
+      ),
+    );
+  }
+}
+
+class NutritionCard extends StatelessWidget {
+  const NutritionCard({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      height: 300,
+      width: double.infinity,
+      margin: const EdgeInsets.fromLTRB(10, 5, 10, 5),
+      decoration: BoxDecoration(
+          color: Colors.blue, borderRadius: BorderRadius.circular(10)),
+      child: Center(
+        child: Text('Nutrition'),
       ),
     );
   }
@@ -118,27 +165,15 @@ class TrainingCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    // TODO: implement build
-    throw UnimplementedError();
-  }
-}
-
-class NutritionCard extends StatelessWidget {
-  const NutritionCard({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    // TODO: implement build
-    throw UnimplementedError();
-  }
-}
-
-class BodyCard extends StatelessWidget {
-  const BodyCard({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    // TODO: implement build
-    throw UnimplementedError();
+    return Container(
+      height: 300,
+      width: double.infinity,
+      margin: const EdgeInsets.fromLTRB(10, 5, 10, 5),
+      decoration: BoxDecoration(
+          color: Colors.blue, borderRadius: BorderRadius.circular(10)),
+      child: Center(
+        child: Text('Training'),
+      ),
+    );
   }
 }

@@ -46,6 +46,7 @@ dependencies:
   carousel_slider: ^4.2.1
   intl: ^0.18.1
   syncfusion_flutter_charts: ^21.2.8
+  syncfusion_flutter_calendar: ^21.2.10
 
 dev_dependencies:
   flutter_test:

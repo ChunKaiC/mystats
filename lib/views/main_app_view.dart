@@ -16,26 +16,36 @@ class MainAppView extends StatefulWidget {
 
 class _MainAppViewState extends State<MainAppView> {
   late final PageController pageController;
+  late final NavbarProvider navbarProvider;
 
   @override
   void initState() {
     super.initState();
 
     // Sync navbar index with page controller
-    final navbarProvider = context.read<NavbarProvider>();
+    navbarProvider = context.read<NavbarProvider>();
     navbarProvider.addListener(syncNavbarWithPages);
 
     // Set initial page
     pageController = PageController(initialPage: navbarProvider.selectedIndex);
   }
 
+  @override
+  void dispose() {
+    // Desync
+    navbarProvider.removeListener(syncNavbarWithPages);
+    super.dispose();
+  }
+
   void syncNavbarWithPages() {
-    setState(() {
-      final navbarProvider = context.read<NavbarProvider>();
-      pageController.jumpToPage(
-        navbarProvider.selectedIndex,
-      );
-    });
+    setState(
+      () {
+        final navbarProvider = context.read<NavbarProvider>();
+        pageController.jumpToPage(
+          navbarProvider.selectedIndex,
+        );
+      },
+    );
   }
 
   @override

@@ -93,7 +93,6 @@ class JournalEntryPage extends StatelessWidget {
           Expanded(
             child: ListView(
               children: [
-                InfoCard(),
                 BodyCard(),
                 NutritionCard(),
                 TrainingCard(),
@@ -130,7 +129,7 @@ class BodyCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: 300,
+      height: 50,
       width: double.infinity,
       margin: const EdgeInsets.fromLTRB(10, 5, 10, 5),
       decoration: BoxDecoration(
@@ -142,19 +141,119 @@ class BodyCard extends StatelessWidget {
   }
 }
 
-class NutritionCard extends StatelessWidget {
+class NutritionInfo {
+  String food;
+  int calories;
+  int fats;
+  int proteins;
+  int carbs;
+
+  NutritionInfo(this.food, this.calories, this.fats, this.proteins, this.carbs);
+}
+
+class NutritionCard extends StatefulWidget {
   const NutritionCard({super.key});
 
   @override
+  State<NutritionCard> createState() => _NutritionCardState();
+}
+
+class _NutritionCardState extends State<NutritionCard> {
+  List<NutritionInfo> breakfast = [];
+  List<NutritionInfo> lunch = [];
+  List<NutritionInfo> dinner = [];
+  List<NutritionInfo> snacks = [];
+
+  @override
   Widget build(BuildContext context) {
+    final List<Widget> breakfastSection = [Text('Breakfast')];
+    for (int i = 0; i < breakfast.length + 1; i++) {
+      if (i == breakfast.length) {
+        breakfastSection.add(TextButton(
+            onPressed: () {
+              setState(() {
+                breakfast.add(NutritionInfo('stuff', 0, 0, 0, 0));
+              });
+            },
+            child: Text(
+              'Add',
+              style: GoogleFonts.roboto(color: Colors.black),
+            )));
+      } else {
+        final info = breakfast[i];
+        breakfastSection.add(Text(info.food));
+      }
+    }
+
+    final List<Widget> lunchSection = [Text('Lunch')];
+    for (int i = 0; i < lunch.length + 1; i++) {
+      if (i == lunch.length) {
+        lunchSection.add(TextButton(
+            onPressed: () {
+              setState(() {
+                lunch.add(NutritionInfo('stuff', 0, 0, 0, 0));
+              });
+            },
+            child: Text(
+              'Add',
+              style: GoogleFonts.roboto(color: Colors.black),
+            )));
+      } else {
+        final info = lunch[i];
+        lunchSection.add(Text(info.food));
+      }
+    }
+
+    final List<Widget> dinnerSection = [Text('Dinner')];
+    for (int i = 0; i < dinner.length + 1; i++) {
+      if (i == dinner.length) {
+        dinnerSection.add(TextButton(
+            onPressed: () {
+              setState(() {
+                dinner.add(NutritionInfo('stuff', 0, 0, 0, 0));
+              });
+            },
+            child: Text(
+              'Add',
+              style: GoogleFonts.roboto(color: Colors.black),
+            )));
+      } else {
+        final info = dinner[i];
+        dinnerSection.add(Text(info.food));
+      }
+    }
+
+    final List<Widget> snackSection = [Text('Snack')];
+    for (int i = 0; i < snacks.length + 1; i++) {
+      if (i == snacks.length) {
+        snackSection.add(TextButton(
+            onPressed: () {
+              setState(() {
+                snacks.add(NutritionInfo('stuff', 0, 0, 0, 0));
+              });
+            },
+            child: Text(
+              'Add',
+              style: GoogleFonts.roboto(color: Colors.black),
+            )));
+      } else {
+        final info = snacks[i];
+        snackSection.add(Text(info.food));
+      }
+    }
+
     return Container(
-      height: 300,
       width: double.infinity,
       margin: const EdgeInsets.fromLTRB(10, 5, 10, 5),
       decoration: BoxDecoration(
           color: Colors.blue, borderRadius: BorderRadius.circular(10)),
-      child: Center(
-        child: Text('Nutrition'),
+      child: Column(
+        children: [
+          Column(children: breakfastSection),
+          Column(children: lunchSection),
+          Column(children: dinnerSection),
+          Column(children: snackSection)
+        ],
       ),
     );
   }

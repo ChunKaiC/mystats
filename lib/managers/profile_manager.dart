@@ -83,4 +83,8 @@ class ProfileManager {
   static String? getName() {
     return FirebaseAuth.instance.currentUser?.displayName;
   }
+
+  static String? getPictureURL() {
+    return FirebaseAuth.instance.currentUser?.photoURL;
+  }
 }

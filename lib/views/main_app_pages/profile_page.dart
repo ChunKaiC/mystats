@@ -15,36 +15,109 @@ class ProfilePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final String? pfpURL = ProfileManager.getPictureURL();
+
     return ListView(
       children: [
-        Container(
-          width: double.infinity,
-          height: 150,
-          decoration: BoxDecoration(
-              color: Colors.transparent,
-              borderRadius: BorderRadius.circular(10)),
-          child: Center(
-            child: Container(
+        Column(
+          children: [
+            const SizedBox(height: 15),
+            Container(
               height: 120,
               width: 120,
-              decoration: const BoxDecoration(
-                  color: Colors.blue, shape: BoxShape.circle),
-              child: Padding(
-                padding: const EdgeInsets.all(5),
-                child: Container(
-                  decoration: const BoxDecoration(
-                      color: Colors.white, shape: BoxShape.circle),
-                  child: const Icon(
-                    FontAwesomeIcons.userAstronaut,
-                    size: 70,
-                  ),
-                ),
+              decoration: BoxDecoration(
+                  border: Border.all(color: Colors.blue, width: 5),
+                  color: Colors.blue,
+                  shape: BoxShape.circle),
+              child: CircleAvatar(
+                backgroundImage: pfpURL == null ? null : NetworkImage(pfpURL),
+                child: pfpURL == null
+                    ? const Icon(
+                        FontAwesomeIcons.userAstronaut,
+                        size: 70,
+                      )
+                    : null,
               ),
             ),
-          ),
+            const SizedBox(height: 10),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              children: [
+                SizedBox(
+                  width: 150,
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Text(
+                        "9",
+                        style: GoogleFonts.roboto(
+                            fontSize: 16,
+                            fontWeight: FontWeight.bold,
+                            color: Colors.orange),
+                      ),
+                      Text.rich(
+                        TextSpan(
+                          children: [
+                            TextSpan(
+                                text: "Current Streak ",
+                                style: GoogleFonts.roboto(
+                                    fontWeight: FontWeight.bold,
+                                    fontSize: 16,
+                                    color: Colors.orange)),
+                            const WidgetSpan(
+                              child: Icon(
+                                FontAwesomeIcons.fire,
+                                size: 18,
+                                color: Colors.orange,
+                              ),
+                            )
+                          ],
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+                SizedBox(
+                  width: 150,
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Text(
+                        "31",
+                        style: GoogleFonts.roboto(
+                            fontSize: 16,
+                            fontWeight: FontWeight.bold,
+                            color: Colors.yellow),
+                      ),
+                      Text.rich(
+                        TextSpan(
+                          children: [
+                            TextSpan(
+                                text: "Best Streak ",
+                                style: GoogleFonts.roboto(
+                                    fontWeight: FontWeight.bold,
+                                    fontSize: 16,
+                                    color: Colors.yellow)),
+                            const WidgetSpan(
+                              child: Icon(
+                                FontAwesomeIcons.medal,
+                                size: 18,
+                                color: Colors.yellow,
+                              ),
+                            )
+                          ],
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+              ],
+            ),
+            const SizedBox(height: 10),
+          ],
         ),
         const DisplayTile(
-          height: 150,
+          height: 140,
           label: "My Stats",
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
@@ -224,7 +297,7 @@ class DisplayTile extends StatelessWidget {
             Container(
               width: width ?? double.infinity,
               height: height,
-              padding: const EdgeInsets.fromLTRB(0, 15, 0, 15),
+              padding: const EdgeInsets.fromLTRB(0, 15, 0, 10),
               margin: const EdgeInsets.fromLTRB(10, 10, 10, 10),
               decoration: BoxDecoration(
                 border: Border.all(color: Colors.blue, width: 2),

@@ -4,7 +4,7 @@ import 'package:mystats/views/main_app_pages/journal_page.dart';
 import 'package:mystats/views/main_app_pages/profile_page.dart';
 import 'package:mystats/views/main_app_pages/ranking_page.dart';
 import 'package:mystats/views/main_app_pages/summary_page.dart';
-import 'package:mystats/views/main_app_pages/split_page.dart';
+import 'package:mystats/views/main_app_pages/chat_page.dart';
 import 'package:provider/provider.dart';
 
 class MainAppView extends StatefulWidget {
@@ -75,7 +75,7 @@ class _MainAppViewState extends State<MainAppView> {
             controller: pageController,
             children: [
               JournalPage(),
-              SplitPage(),
+              ChatPage(),
               SummaryPage(),
               RankingPage(),
               ProfilePage(),

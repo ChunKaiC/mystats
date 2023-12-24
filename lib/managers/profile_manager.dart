@@ -75,4 +75,12 @@ class ProfileManager {
   static Future<void> signOut() async {
     await FirebaseAuth.instance.signOut();
   }
+
+  static String? getEmail() {
+    return FirebaseAuth.instance.currentUser?.email;
+  }
+
+  static String? getName() {
+    return FirebaseAuth.instance.currentUser?.displayName;
+  }
 }

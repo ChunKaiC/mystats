@@ -31,8 +31,8 @@ class _NavbarState extends State<Navbar> {
           label: 'Journal',
         ),
         BottomNavigationBarItem(
-          icon: FaIcon(FontAwesomeIcons.dumbbell),
-          label: 'Split',
+          icon: FaIcon(Icons.chat),
+          label: 'Chat',
         ),
         BottomNavigationBarItem(
           icon: Icon(Icons.insert_chart),
@@ -43,9 +43,7 @@ class _NavbarState extends State<Navbar> {
           label: 'Ranking',
         ),
         BottomNavigationBarItem(
-          icon: Icon(
-            Icons.person,
-          ),
+          icon: Icon(Icons.person),
           label: 'Profile',
         )
       ],

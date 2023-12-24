@@ -1,11 +1,12 @@
 import 'package:flutter/material.dart';
 
-class SplitPage extends StatelessWidget {
-  const SplitPage({super.key});
+class ChatPage extends StatelessWidget {
+  const ChatPage({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return ExpansionPanelListExample();
+    return Container();
+    // return ExpansionPanelListExample();
   }
 }
 

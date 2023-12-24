@@ -47,6 +47,7 @@ dependencies:
   intl: ^0.18.1
   syncfusion_flutter_charts: ^21.2.8
   syncfusion_flutter_calendar: ^21.2.10
+  flutter_local_notifications: ^16.2.0
 
 dev_dependencies:
   flutter_test:

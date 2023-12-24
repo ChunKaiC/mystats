@@ -92,7 +92,7 @@ class JournalEntryPage extends StatelessWidget {
           ),
           Expanded(
             child: ListView(
-              children: [
+              children: const [
                 BodyCard(),
                 NutritionCard(),
                 TrainingCard(),
@@ -116,7 +116,7 @@ class InfoCard extends StatelessWidget {
       margin: const EdgeInsets.fromLTRB(10, 0, 10, 5),
       decoration: BoxDecoration(
           color: Colors.blue, borderRadius: BorderRadius.circular(10)),
-      child: Center(
+      child: const Center(
         child: Text('Some information here'),
       ),
     );
@@ -134,7 +134,7 @@ class BodyCard extends StatelessWidget {
       margin: const EdgeInsets.fromLTRB(10, 5, 10, 5),
       decoration: BoxDecoration(
           color: Colors.blue, borderRadius: BorderRadius.circular(10)),
-      child: Center(
+      child: const Center(
         child: Text('Body'),
       ),
     );
@@ -166,7 +166,7 @@ class _NutritionCardState extends State<NutritionCard> {
 
   @override
   Widget build(BuildContext context) {
-    final List<Widget> breakfastSection = [Text('Breakfast')];
+    final List<Widget> breakfastSection = [const Text('Breakfast')];
     for (int i = 0; i < breakfast.length + 1; i++) {
       if (i == breakfast.length) {
         breakfastSection.add(TextButton(
@@ -185,7 +185,7 @@ class _NutritionCardState extends State<NutritionCard> {
       }
     }
 
-    final List<Widget> lunchSection = [Text('Lunch')];
+    final List<Widget> lunchSection = [const Text('Lunch')];
     for (int i = 0; i < lunch.length + 1; i++) {
       if (i == lunch.length) {
         lunchSection.add(TextButton(
@@ -204,7 +204,7 @@ class _NutritionCardState extends State<NutritionCard> {
       }
     }
 
-    final List<Widget> dinnerSection = [Text('Dinner')];
+    final List<Widget> dinnerSection = [const Text('Dinner')];
     for (int i = 0; i < dinner.length + 1; i++) {
       if (i == dinner.length) {
         dinnerSection.add(TextButton(
@@ -223,7 +223,7 @@ class _NutritionCardState extends State<NutritionCard> {
       }
     }
 
-    final List<Widget> snackSection = [Text('Snack')];
+    final List<Widget> snackSection = [const Text('Snack')];
     for (int i = 0; i < snacks.length + 1; i++) {
       if (i == snacks.length) {
         snackSection.add(TextButton(
@@ -270,7 +270,7 @@ class TrainingCard extends StatelessWidget {
       margin: const EdgeInsets.fromLTRB(10, 5, 10, 5),
       decoration: BoxDecoration(
           color: Colors.blue, borderRadius: BorderRadius.circular(10)),
-      child: Center(
+      child: const Center(
         child: Text('Training'),
       ),
     );

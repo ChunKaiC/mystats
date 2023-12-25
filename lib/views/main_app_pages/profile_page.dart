@@ -11,6 +11,7 @@ class ProfilePage extends StatelessWidget {
   final TextEditingController sexController = TextEditingController();
   final TextEditingController heightController = TextEditingController();
   final TextEditingController weightController = TextEditingController();
+
   ProfilePage({super.key});
 
   @override
@@ -158,12 +159,11 @@ class ProfilePage extends StatelessWidget {
           ),
         ),
         const DisplayTile(
-          height: 100,
-          width: double.infinity,
-          color: Colors.white,
-          label: "Reminders",
-          child: Text("Notifications"),
-        ),
+            // height: 100,
+            width: double.infinity,
+            color: Colors.white,
+            label: "Reminders",
+            child: ReminderMenu()),
         TextButton(
           onPressed: () async {
             Navigator.pushNamedAndRemoveUntil(
@@ -324,6 +324,106 @@ class DisplayTile extends StatelessWidget {
               style: GoogleFonts.roboto(color: Colors.white),
             ),
           ),
+        )
+      ],
+    );
+  }
+}
+
+class DayButton extends StatelessWidget {
+  final String label;
+  final bool isSelected;
+
+  const DayButton({super.key, required this.label, required this.isSelected});
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      width: 40,
+      height: 40,
+      decoration: BoxDecoration(
+          shape: BoxShape.circle,
+          color: isSelected ? Colors.blue : Colors.grey),
+      child: Center(
+        child: Text(
+          label,
+          style: const TextStyle(
+              color: Colors.white, fontWeight: FontWeight.bold, fontSize: 16),
+        ),
+      ),
+    );
+  }
+}
+
+class ReminderMenu extends StatefulWidget {
+  const ReminderMenu({super.key});
+
+  @override
+  State<ReminderMenu> createState() => _ReminderMenuState();
+}
+
+class _ReminderMenuState extends State<ReminderMenu> {
+  late TimeOfDay selectedTime;
+  final List<String> days = ["S", "M", "T", "W", "T", "F", "S"];
+  late List<bool> selections;
+
+  @override
+  void initState() {
+    super.initState();
+    selectedTime = TimeOfDay.now();
+    selections = [false, false, false, false, false, false, false];
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    final List<Widget> buttons = [];
+    [for (int i = 0; i < days.length; i++) i];
+    return Column(
+      children: [
+        const SizedBox(height: 10),
+        Row(
+          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+          children: [
+            for (int i = 0; i < days.length; i++)
+              GestureDetector(
+                onTap: () {
+                  setState(() {
+                    selections[i] = !selections[i];
+                  });
+                },
+                child: DayButton(label: days[i], isSelected: selections[i]),
+              )
+          ],
+        ),
+        const SizedBox(height: 15),
+        TextButton(
+          style: ButtonStyle(
+              backgroundColor: MaterialStateProperty.all(Colors.blue),
+              shape: MaterialStateProperty.all<RoundedRectangleBorder>(
+                  RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(18.0),
+                      side: const BorderSide(color: Colors.blue)))),
+          child: SizedBox(
+            width: 150,
+            child: Center(
+              child: Text(
+                "Remind at ${selectedTime.hour}:${selectedTime.minute}",
+                style: GoogleFonts.roboto(color: Colors.white),
+              ),
+            ),
+          ),
+          onPressed: () async {
+            final TimeOfDay? time = await showTimePicker(
+              context: context,
+              initialTime: TimeOfDay.now(),
+            );
+
+            setState(() {
+              if (time != null) {
+                selectedTime = time;
+              }
+            });
+          },
         )
       ],
     );

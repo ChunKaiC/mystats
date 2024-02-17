@@ -44,7 +44,7 @@ class _LandingViewState extends State<LandingView> {
               end: Alignment.bottomCenter,
             ),
           ),
-          child: Column(children: const [
+          child: const Column(children: [
             Flexible(
                 child: FractionallySizedBox(
               heightFactor: .50,
@@ -162,8 +162,9 @@ class _SignInFormState extends State<SignInForm> {
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    FaIcon(FontAwesomeIcons.rightFromBracket),
-                    SizedBox(
+                    const FaIcon(FontAwesomeIcons.rightFromBracket,
+                        color: Colors.blue),
+                    const SizedBox(
                       width: 10,
                     ),
                     Text(
@@ -218,8 +219,8 @@ class _SignInFormState extends State<SignInForm> {
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    FaIcon(FontAwesomeIcons.google),
-                    SizedBox(
+                    const FaIcon(FontAwesomeIcons.google, color: Colors.blue),
+                    const SizedBox(
                       width: 10,
                     ),
                     Text(
@@ -251,8 +252,8 @@ class _SignInFormState extends State<SignInForm> {
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    FaIcon(FontAwesomeIcons.person),
-                    SizedBox(
+                    const FaIcon(FontAwesomeIcons.person, color: Colors.blue),
+                    const SizedBox(
                       width: 10,
                     ),
                     Text(

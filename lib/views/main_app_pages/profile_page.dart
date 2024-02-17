@@ -376,7 +376,6 @@ class _ReminderMenuState extends State<ReminderMenu> {
 
   @override
   Widget build(BuildContext context) {
-    final List<Widget> buttons = [];
     [for (int i = 0; i < days.length; i++) i];
     return Column(
       children: [

@@ -39,11 +39,11 @@ class DisplayTile extends StatelessWidget {
           ],
         ),
         IntrinsicWidth(
-          stepWidth: 25,
           child: Container(
             height: 30,
             alignment: AlignmentDirectional.center,
             margin: const EdgeInsets.fromLTRB(20, 10, 10, 10),
+            padding: const EdgeInsets.fromLTRB(10, 0, 10, 0),
             decoration: BoxDecoration(
               border: Border.all(color: Colors.blue, width: 2),
               color: Colors.blue,
@@ -51,7 +51,8 @@ class DisplayTile extends StatelessWidget {
             ),
             child: Text(
               label,
-              style: GoogleFonts.roboto(color: Colors.white),
+              style: const TextStyle(
+                  color: Colors.white, fontWeight: FontWeight.w500),
             ),
           ),
         )

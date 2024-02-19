@@ -1,3 +1,6 @@
+import 'dart:ui';
+
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -101,8 +104,8 @@ class JournalEntryPage extends StatelessWidget {
           Expanded(
             child: ListView(
               children: [
-                BodyCard(),
-                NutritionCard(),
+                const BodyCard(),
+                const NutritionCard(),
                 TrainingCard(),
               ],
             ),
@@ -123,16 +126,20 @@ class BodyCard extends StatelessWidget {
       label: "Body Composition",
       child: Container(
         margin: const EdgeInsets.fromLTRB(10, 5, 10, 5),
-        child: Column(
+        child: Row(
           children: [
-            InfoField(
-              hintText: 'Body Weight',
-              suffixText: "kgs",
+            Expanded(
+              child: InfoField(
+                hintText: 'Body Weight',
+                suffixText: "kgs",
+              ),
             ),
-            const SizedBox(height: 5),
-            InfoField(
-              hintText: 'Body Fat',
-              suffixText: "%",
+            const SizedBox(width: 10),
+            Expanded(
+              child: InfoField(
+                hintText: 'Body Fat',
+                suffixText: "%",
+              ),
             )
           ],
         ),
@@ -166,8 +173,9 @@ class NutritionItem extends StatelessWidget {
   final Widget? child;
   final double? borderRadius;
   final EdgeInsets? margin;
+  final FocusNode focusNode = FocusNode();
 
-  const NutritionItem(
+  NutritionItem(
       {super.key,
       required this.label,
       this.width,
@@ -189,8 +197,8 @@ class NutritionItem extends StatelessWidget {
       child: Column(
         children: [
           Container(
+            height: 40,
             alignment: AlignmentDirectional.center,
-            padding: const EdgeInsets.fromLTRB(0, 10, 0, 10),
             decoration: BoxDecoration(
               color: Colors.blue,
               borderRadius: BorderRadius.only(
@@ -198,9 +206,24 @@ class NutritionItem extends StatelessWidget {
                 topRight: Radius.circular((borderRadius ?? defaultRadius) - 2),
               ),
             ),
-            child: Text(
-              label,
-              style: const TextStyle(color: Colors.white),
+            child: TextField(
+              selectionControls: CupertinoTextSelectionControls(),
+              focusNode: focusNode,
+              onTapOutside: (event) {
+                focusNode.unfocus();
+              },
+              cursorColor: Colors.white,
+              style: const TextStyle(color: Colors.white, fontSize: 14),
+              textAlign: TextAlign.center,
+              decoration: const InputDecoration(
+                enabledBorder: UnderlineInputBorder(
+                  borderSide: BorderSide(color: Colors.white),
+                ),
+                focusedBorder: UnderlineInputBorder(
+                  borderSide: BorderSide(color: Colors.white),
+                ),
+                contentPadding: EdgeInsets.fromLTRB(0, 0, 0, 10),
+              ),
             ),
           ),
           child ?? Container(),
@@ -213,7 +236,7 @@ class NutritionItem extends StatelessWidget {
 class _NutritionCardState extends State<NutritionCard> {
   List<NutritionInfo> foods = [];
 
-  List<Widget> _buildFoodWidgetList(List<NutritionInfo> foods) {
+  List<Widget> _buildFoodWidgetList() {
     final List<Widget> wList = [];
     for (NutritionInfo info in foods) {
       wList.add(
@@ -239,7 +262,7 @@ class _NutritionCardState extends State<NutritionCard> {
         margin: const EdgeInsets.fromLTRB(10, 5, 10, 5),
         child: Column(
           children: [
-            ..._buildFoodWidgetList(foods),
+            ..._buildFoodWidgetList(),
             IconButton(
               icon: const Icon(Icons.add_circle),
               onPressed: () {
@@ -253,12 +276,38 @@ class _NutritionCardState extends State<NutritionCard> {
   }
 }
 
-class TrainingInfo {}
+class TrainingInfo {
+  final String? name;
 
-class TrainingCard extends StatelessWidget {
+  TrainingInfo({this.name});
+}
+
+class TrainingCard extends StatefulWidget {
+  TrainingCard({super.key});
+
+  @override
+  State<TrainingCard> createState() => _TrainingCardState();
+}
+
+class _TrainingCardState extends State<TrainingCard> {
   final List<TrainingInfo> trainings = [];
 
-  TrainingCard({super.key});
+  List<Widget> _buildTrainingWidgetList() {
+    final List<Widget> wList = [];
+    for (TrainingInfo info in trainings) {
+      wList.add(
+        NutritionItem(
+          label: info.name ?? "Place Holder",
+          margin: const EdgeInsets.fromLTRB(0, 5, 0, 10),
+          borderRadius: 10,
+          child: Container(
+            height: 50,
+          ),
+        ),
+      );
+    }
+    return wList;
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -266,12 +315,16 @@ class TrainingCard extends StatelessWidget {
       label: "Training",
       color: Colors.blue[100]!,
       child: Container(
-        height: 100,
-        width: double.infinity,
         margin: const EdgeInsets.fromLTRB(10, 5, 10, 5),
-        child: const Center(
-          child: Text('Training'),
-        ),
+        child: Column(children: [
+          ..._buildTrainingWidgetList(),
+          IconButton(
+            icon: const Icon(Icons.add_circle),
+            onPressed: () {
+              setState(() => trainings.add(TrainingInfo()));
+            },
+          )
+        ]),
       ),
     );
   }

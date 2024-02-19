@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:mystats/components/display_tile.dart';
+import 'package:mystats/components/info_field.dart';
 import 'package:mystats/managers/profile_manager.dart';
 
 class ProfilePage extends StatelessWidget {
@@ -117,10 +119,10 @@ class ProfilePage extends StatelessWidget {
             const SizedBox(height: 10),
           ],
         ),
-        const DisplayTile(
+        DisplayTile(
           height: 140,
           label: "My Stats",
-          child: Row(
+          child: const Row(
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: [
               StatDisplay(label: "Squat", value: 315),
@@ -138,32 +140,39 @@ class ProfilePage extends StatelessWidget {
                 label: "Email Address",
                 controller: emailController,
                 readOnly: true,
+                padding: const EdgeInsets.fromLTRB(10, 5, 10, 5),
               ),
               InfoField(
                 label: "Name",
                 controller: nameController,
+                padding: const EdgeInsets.fromLTRB(10, 5, 10, 5),
               ),
               InfoField(
-                  label: "Sex",
-                  controller: sexController,
-                  suffixText: "Male/Female"),
+                label: "Sex",
+                controller: sexController,
+                suffixText: "Male/Female",
+                padding: const EdgeInsets.fromLTRB(10, 5, 10, 5),
+              ),
               InfoField(
-                  label: "Height",
-                  controller: heightController,
-                  suffixText: "cms"),
+                label: "Height",
+                controller: heightController,
+                suffixText: "cms",
+                padding: const EdgeInsets.fromLTRB(10, 5, 10, 5),
+              ),
               InfoField(
-                  label: "Weight",
-                  controller: weightController,
-                  suffixText: "kgs"),
+                label: "Weight",
+                controller: weightController,
+                suffixText: "kgs",
+                padding: const EdgeInsets.fromLTRB(10, 5, 10, 5),
+              ),
             ],
           ),
         ),
-        const DisplayTile(
-            // height: 100,
+        DisplayTile(
             width: double.infinity,
             color: Colors.white,
             label: "Reminders",
-            child: ReminderMenu()),
+            child: const ReminderMenu()),
         TextButton(
           onPressed: () async {
             Navigator.pushNamedAndRemoveUntil(
@@ -218,113 +227,6 @@ class StatDisplay extends StatelessWidget {
             ),
           ),
         ),
-      ],
-    );
-  }
-}
-
-class InfoField extends StatelessWidget {
-  final String label;
-  final String? suffixText;
-  final TextEditingController? controller;
-  final bool? readOnly;
-
-  const InfoField({
-    super.key,
-    required this.label,
-    this.suffixText,
-    this.controller,
-    this.readOnly,
-  });
-
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      padding: const EdgeInsets.all(10),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Text(
-            label,
-            style: GoogleFonts.roboto(),
-          ),
-          Padding(
-            padding: const EdgeInsets.fromLTRB(0, 10, 0, 0),
-            child: SizedBox(
-              height: 40,
-              child: TextField(
-                controller: controller,
-                readOnly: readOnly ?? false,
-                maxLines: 1,
-                decoration: InputDecoration(
-                  contentPadding: const EdgeInsets.fromLTRB(10, 5, 10, 5),
-                  suffixText: suffixText,
-                  border: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(10),
-                  ),
-                ),
-              ),
-            ),
-          )
-        ],
-      ),
-    );
-  }
-}
-
-class DisplayTile extends StatelessWidget {
-  final double? height;
-  final double? width;
-  final Color? color;
-  final String label;
-  final Widget child;
-
-  const DisplayTile(
-      {super.key,
-      this.height,
-      this.width,
-      this.color,
-      required this.label,
-      required this.child});
-
-  @override
-  Widget build(BuildContext context) {
-    return Stack(
-      children: [
-        Column(
-          children: [
-            const SizedBox(height: 15),
-            Container(
-              width: width ?? double.infinity,
-              height: height,
-              padding: const EdgeInsets.fromLTRB(0, 15, 0, 10),
-              margin: const EdgeInsets.fromLTRB(10, 10, 10, 10),
-              decoration: BoxDecoration(
-                border: Border.all(color: Colors.blue, width: 2),
-                color: color ?? Colors.white,
-                borderRadius: BorderRadius.circular(10),
-              ),
-              child: Center(child: child),
-            ),
-          ],
-        ),
-        IntrinsicWidth(
-          stepWidth: 25,
-          child: Container(
-            height: 30,
-            alignment: AlignmentDirectional.center,
-            margin: const EdgeInsets.fromLTRB(20, 10, 10, 10),
-            decoration: BoxDecoration(
-              border: Border.all(color: Colors.blue, width: 2),
-              color: Colors.blue,
-              borderRadius: BorderRadius.circular(10),
-            ),
-            child: Text(
-              label,
-              style: GoogleFonts.roboto(color: Colors.white),
-            ),
-          ),
-        )
       ],
     );
   }

@@ -2,6 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:intl/intl.dart';
+import 'package:mystats/components/display_tile.dart';
+import 'package:mystats/components/info_field.dart';
+import 'package:mystats/components/section_tile.dart';
 import 'package:syncfusion_flutter_calendar/calendar.dart';
 
 class JournalPage extends StatefulWidget {
@@ -72,7 +75,6 @@ class JournalEntryPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      // width: double.infinity,
       margin: const EdgeInsets.fromLTRB(2, 0, 2, 10),
       decoration: BoxDecoration(
         color: Colors.white,
@@ -83,16 +85,22 @@ class JournalEntryPage extends StatelessWidget {
           SizedBox(
             height: 50,
             child: Center(
-              child: Text(
-                'DATE: ${DateFormat('yyyy/MM/dd').format(datetime)}',
-                textAlign: TextAlign.center,
-                style: GoogleFonts.koulen(fontSize: 20),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  const Icon(Icons.calendar_month),
+                  Text(
+                    DateFormat(' yyyy/MM/dd').format(datetime),
+                    textAlign: TextAlign.center,
+                    style: GoogleFonts.koulen(fontSize: 20),
+                  ),
+                ],
               ),
             ),
           ),
           Expanded(
             child: ListView(
-              children: const [
+              children: [
                 BodyCard(),
                 NutritionCard(),
                 TrainingCard(),
@@ -105,50 +113,43 @@ class JournalEntryPage extends StatelessWidget {
   }
 }
 
-class InfoCard extends StatelessWidget {
-  const InfoCard({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      height: 100,
-      width: double.infinity,
-      margin: const EdgeInsets.fromLTRB(10, 0, 10, 5),
-      decoration: BoxDecoration(
-          color: Colors.blue, borderRadius: BorderRadius.circular(10)),
-      child: const Center(
-        child: Text('Some information here'),
-      ),
-    );
-  }
-}
-
 class BodyCard extends StatelessWidget {
   const BodyCard({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      height: 50,
-      width: double.infinity,
-      margin: const EdgeInsets.fromLTRB(10, 5, 10, 5),
-      decoration: BoxDecoration(
-          color: Colors.blue, borderRadius: BorderRadius.circular(10)),
-      child: const Center(
-        child: Text('Body'),
+    return DisplayTile(
+      color: Colors.blue[100]!,
+      label: "Body Composition",
+      child: Container(
+        margin: const EdgeInsets.fromLTRB(10, 5, 10, 5),
+        child: Column(
+          children: [
+            InfoField(
+              hintText: 'Body Weight',
+              suffixText: "kgs",
+            ),
+            const SizedBox(height: 5),
+            InfoField(
+              hintText: 'Body Fat',
+              suffixText: "%",
+            )
+          ],
+        ),
       ),
     );
   }
 }
 
 class NutritionInfo {
-  String food;
-  int calories;
-  int fats;
-  int proteins;
-  int carbs;
+  String? food;
+  int? calories;
+  int? fats;
+  int? proteins;
+  int? carbs;
 
-  NutritionInfo(this.food, this.calories, this.fats, this.proteins, this.carbs);
+  NutritionInfo(
+      {this.food, this.calories, this.fats, this.proteins, this.carbs});
 }
 
 class NutritionCard extends StatefulWidget {
@@ -158,120 +159,119 @@ class NutritionCard extends StatefulWidget {
   State<NutritionCard> createState() => _NutritionCardState();
 }
 
-class _NutritionCardState extends State<NutritionCard> {
-  List<NutritionInfo> breakfast = [];
-  List<NutritionInfo> lunch = [];
-  List<NutritionInfo> dinner = [];
-  List<NutritionInfo> snacks = [];
+class NutritionItem extends StatelessWidget {
+  final String label;
+  final double? width;
+  final double? height;
+  final Widget? child;
+  final double? borderRadius;
+  final EdgeInsets? margin;
+
+  const NutritionItem(
+      {super.key,
+      required this.label,
+      this.width,
+      this.height,
+      this.child,
+      this.borderRadius,
+      required this.margin});
 
   @override
   Widget build(BuildContext context) {
-    final List<Widget> breakfastSection = [const Text('Breakfast')];
-    for (int i = 0; i < breakfast.length + 1; i++) {
-      if (i == breakfast.length) {
-        breakfastSection.add(TextButton(
-            onPressed: () {
-              setState(() {
-                breakfast.add(NutritionInfo('stuff', 0, 0, 0, 0));
-              });
-            },
-            child: Text(
-              'Add',
-              style: GoogleFonts.roboto(color: Colors.black),
-            )));
-      } else {
-        final info = breakfast[i];
-        breakfastSection.add(Text(info.food));
-      }
-    }
-
-    final List<Widget> lunchSection = [const Text('Lunch')];
-    for (int i = 0; i < lunch.length + 1; i++) {
-      if (i == lunch.length) {
-        lunchSection.add(TextButton(
-            onPressed: () {
-              setState(() {
-                lunch.add(NutritionInfo('stuff', 0, 0, 0, 0));
-              });
-            },
-            child: Text(
-              'Add',
-              style: GoogleFonts.roboto(color: Colors.black),
-            )));
-      } else {
-        final info = lunch[i];
-        lunchSection.add(Text(info.food));
-      }
-    }
-
-    final List<Widget> dinnerSection = [const Text('Dinner')];
-    for (int i = 0; i < dinner.length + 1; i++) {
-      if (i == dinner.length) {
-        dinnerSection.add(TextButton(
-            onPressed: () {
-              setState(() {
-                dinner.add(NutritionInfo('stuff', 0, 0, 0, 0));
-              });
-            },
-            child: Text(
-              'Add',
-              style: GoogleFonts.roboto(color: Colors.black),
-            )));
-      } else {
-        final info = dinner[i];
-        dinnerSection.add(Text(info.food));
-      }
-    }
-
-    final List<Widget> snackSection = [const Text('Snack')];
-    for (int i = 0; i < snacks.length + 1; i++) {
-      if (i == snacks.length) {
-        snackSection.add(TextButton(
-            onPressed: () {
-              setState(() {
-                snacks.add(NutritionInfo('stuff', 0, 0, 0, 0));
-              });
-            },
-            child: Text(
-              'Add',
-              style: GoogleFonts.roboto(color: Colors.black),
-            )));
-      } else {
-        final info = snacks[i];
-        snackSection.add(Text(info.food));
-      }
-    }
+    const double defaultRadius = 0;
 
     return Container(
-      width: double.infinity,
-      margin: const EdgeInsets.fromLTRB(10, 5, 10, 5),
+      margin: margin,
       decoration: BoxDecoration(
-          color: Colors.blue, borderRadius: BorderRadius.circular(10)),
+          color: Colors.white,
+          border: Border.all(color: Colors.grey[800]!, width: 1),
+          borderRadius: BorderRadius.circular(borderRadius ?? defaultRadius)),
       child: Column(
         children: [
-          Column(children: breakfastSection),
-          Column(children: lunchSection),
-          Column(children: dinnerSection),
-          Column(children: snackSection)
+          Container(
+            alignment: AlignmentDirectional.center,
+            padding: const EdgeInsets.fromLTRB(0, 10, 0, 10),
+            decoration: BoxDecoration(
+              color: Colors.blue,
+              borderRadius: BorderRadius.only(
+                topLeft: Radius.circular((borderRadius ?? defaultRadius) - 2),
+                topRight: Radius.circular((borderRadius ?? defaultRadius) - 2),
+              ),
+            ),
+            child: Text(
+              label,
+              style: const TextStyle(color: Colors.white),
+            ),
+          ),
+          child ?? Container(),
         ],
       ),
     );
   }
 }
 
-class TrainingCard extends StatelessWidget {
-  const TrainingCard({super.key});
+class _NutritionCardState extends State<NutritionCard> {
+  List<NutritionInfo> foods = [];
+
+  List<Widget> _buildFoodWidgetList(List<NutritionInfo> foods) {
+    final List<Widget> wList = [];
+    for (NutritionInfo info in foods) {
+      wList.add(
+        NutritionItem(
+          label: info.food ?? "Place Holder",
+          margin: const EdgeInsets.fromLTRB(0, 5, 0, 10),
+          borderRadius: 10,
+          child: Container(
+            height: 50,
+          ),
+        ),
+      );
+    }
+    return wList;
+  }
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      height: 300,
-      width: double.infinity,
-      margin: const EdgeInsets.fromLTRB(10, 5, 10, 5),
-      decoration: BoxDecoration(
-          color: Colors.blue, borderRadius: BorderRadius.circular(10)),
-      child: const Center(
-        child: Text('Training'),
+    return DisplayTile(
+      label: "Nutrition",
+      color: Colors.blue[100]!,
+      child: Container(
+        margin: const EdgeInsets.fromLTRB(10, 5, 10, 5),
+        child: Column(
+          children: [
+            ..._buildFoodWidgetList(foods),
+            IconButton(
+              icon: const Icon(Icons.add_circle),
+              onPressed: () {
+                setState(() => foods.add(NutritionInfo()));
+              },
+            )
+          ],
+        ),
+      ),
+    );
+  }
+}
+
+class TrainingInfo {}
+
+class TrainingCard extends StatelessWidget {
+  final List<TrainingInfo> trainings = [];
+
+  TrainingCard({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return DisplayTile(
+      label: "Training",
+      color: Colors.blue[100]!,
+      child: Container(
+        height: 100,
+        width: double.infinity,
+        margin: const EdgeInsets.fromLTRB(10, 5, 10, 5),
+        child: const Center(
+          child: Text('Training'),
+        ),
       ),
     );
   }

@@ -7,6 +7,7 @@ class DisplayTile extends StatelessWidget {
   final Color? color;
   final String label;
   final Widget child;
+  final Color? borderColor;
   final focusNode = FocusNode();
 
   DisplayTile(
@@ -15,7 +16,8 @@ class DisplayTile extends StatelessWidget {
       this.width,
       this.color,
       required this.label,
-      required this.child});
+      required this.child,
+      this.borderColor});
 
   @override
   Widget build(BuildContext context) {
@@ -30,9 +32,10 @@ class DisplayTile extends StatelessWidget {
               padding: const EdgeInsets.fromLTRB(0, 15, 0, 10),
               margin: const EdgeInsets.fromLTRB(10, 10, 10, 10),
               decoration: BoxDecoration(
-                border: Border.all(color: Colors.blue, width: 2),
+                border: Border.all(
+                    color: borderColor ?? (color ?? Colors.blue), width: 2),
                 color: color ?? Colors.white,
-                borderRadius: BorderRadius.circular(10),
+                borderRadius: BorderRadius.circular(8),
               ),
               child: Center(child: child),
             ),

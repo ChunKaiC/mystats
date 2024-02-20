@@ -49,6 +49,7 @@ dependencies:
   syncfusion_flutter_calendar: ^21.2.10
   flutter_local_notifications: ^16.2.0
   toggle_switch: ^2.1.0
+  fl_chart: ^0.66.2
 
 dev_dependencies:
   flutter_test:

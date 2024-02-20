@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-class InfoField extends StatelessWidget {
+class MSInputField extends StatelessWidget {
   final String? label;
   final String? hintText;
   final String? suffixText;
@@ -13,7 +13,7 @@ class InfoField extends StatelessWidget {
   final Function(String)? onChanged;
   final focusNode = FocusNode();
 
-  InfoField({
+  MSInputField({
     super.key,
     this.label,
     this.suffixText,

@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:mystats/components/display_tile.dart';
-import 'package:mystats/components/info_field.dart';
+import 'package:mystats/components/ms_input_field.dart';
 import 'package:mystats/managers/profile_manager.dart';
 
 class ProfilePage extends StatelessWidget {
@@ -136,30 +136,30 @@ class ProfilePage extends StatelessWidget {
           label: "Personal Information",
           child: Column(
             children: [
-              InfoField(
+              MSInputField(
                 label: "Email Address",
                 controller: emailController,
                 readOnly: true,
                 padding: const EdgeInsets.fromLTRB(10, 5, 10, 5),
               ),
-              InfoField(
+              MSInputField(
                 label: "Name",
                 controller: nameController,
                 padding: const EdgeInsets.fromLTRB(10, 5, 10, 5),
               ),
-              InfoField(
+              MSInputField(
                 label: "Sex",
                 controller: sexController,
                 suffixText: "Male/Female",
                 padding: const EdgeInsets.fromLTRB(10, 5, 10, 5),
               ),
-              InfoField(
+              MSInputField(
                 label: "Height",
                 controller: heightController,
                 suffixText: "cms",
                 padding: const EdgeInsets.fromLTRB(10, 5, 10, 5),
               ),
-              InfoField(
+              MSInputField(
                 label: "Weight",
                 controller: weightController,
                 suffixText: "kgs",

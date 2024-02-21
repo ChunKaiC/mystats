@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class MSInputField extends StatelessWidget {
+  final Color? enabledColor;
+  final Color? disabledColor;
   final String? label;
   final String? hintText;
   final String? suffixText;
@@ -24,6 +26,8 @@ class MSInputField extends StatelessWidget {
     this.onChanged,
     this.padding,
     this.alwaysShowSuffix,
+    this.enabledColor,
+    this.disabledColor,
   });
 
   @override
@@ -56,8 +60,8 @@ class MSInputField extends StatelessWidget {
                 decoration: InputDecoration(
                   filled: true,
                   fillColor: readOnly != null && readOnly!
-                      ? Colors.grey[300]!
-                      : Colors.white,
+                      ? disabledColor
+                      : enabledColor,
                   hintText: hintText,
                   suffixText: alwaysShowSuffix != null && alwaysShowSuffix!
                       ? null
@@ -73,6 +77,7 @@ class MSInputField extends StatelessWidget {
                       : null,
                   contentPadding: const EdgeInsets.fromLTRB(10, 5, 10, 5),
                   border: OutlineInputBorder(
+                    borderSide: BorderSide.none,
                     borderRadius: BorderRadius.circular(10),
                   ),
                 ),

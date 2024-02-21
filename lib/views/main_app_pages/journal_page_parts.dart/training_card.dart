@@ -9,7 +9,10 @@ class TrainingInfo {
 }
 
 class TrainingCard extends StatefulWidget {
-  TrainingCard({super.key});
+  // TODO: Use this to query data!
+  final DateTime date;
+
+  const TrainingCard({super.key, required this.date});
 
   @override
   State<TrainingCard> createState() => _TrainingCardState();

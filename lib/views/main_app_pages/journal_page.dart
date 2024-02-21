@@ -106,9 +106,9 @@ class JournalEntryPage extends StatelessWidget {
           Expanded(
             child: ListView(
               children: [
-                const BodyCard(),
-                const NutritionCard(),
-                TrainingCard(),
+                BodyCard(date: date),
+                NutritionCard(date: date),
+                TrainingCard(date: date),
               ],
             ),
           ),

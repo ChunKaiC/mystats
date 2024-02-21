@@ -3,7 +3,10 @@ import 'package:mystats/components/display_tile.dart';
 import 'package:mystats/components/ms_input_field.dart';
 
 class BodyCard extends StatelessWidget {
-  const BodyCard({super.key});
+  // TODO: Use this to query data!
+  final DateTime date;
+
+  const BodyCard({super.key, required this.date});
 
   @override
   Widget build(BuildContext context) {
@@ -16,6 +19,7 @@ class BodyCard extends StatelessWidget {
           children: [
             Expanded(
               child: MSInputField(
+                enabledColor: Colors.white,
                 hintText: 'Body Weight',
                 suffixText: "kgs",
               ),
@@ -23,6 +27,7 @@ class BodyCard extends StatelessWidget {
             const SizedBox(width: 10),
             Expanded(
               child: MSInputField(
+                enabledColor: Colors.white,
                 hintText: 'Body Fat',
                 suffixText: "%",
               ),

@@ -109,7 +109,7 @@ SPEC CHECKSUMS:
   FirebaseAuth: 21d5e902fcea44d0d961540fc4742966ae6118cc
   FirebaseCore: b68d3616526ec02e4d155166bbafb8eca64af557
   FirebaseCoreInternal: 43c1788eaeee9d1b97caaa751af567ce11010d00
-  Flutter: f04841e97a9d0b0a8025694d0796dd46242b2854
+  Flutter: e0871f40cf51350855a761d2e70bf5af5b9b5de7
   flutter_local_notifications: 0c0b1ae97e741e1521e4c1629a459d04b9aec743
   google_sign_in_ios: 1256ff9d941db546373826966720b0c24804bcdd
   GoogleSignIn: 5651ce3a61e56ca864160e79b484cd9ed3f49b7a
@@ -119,6 +119,6 @@ SPEC CHECKSUMS:
   path_provider_foundation: eaf5b3e458fc0e5fbb9940fb09980e853fe058b8
   PromisesObjC: c50d2056b5253dadbd6c2bea79b0674bd5a52fa4
 
-PODFILE CHECKSUM: ef19549a9bc3046e7bb7d2fab4d021637c0c58a3
+PODFILE CHECKSUM: c4c93c5f6502fe2754f48404d3594bf779584011
 
 COCOAPODS: 1.15.2

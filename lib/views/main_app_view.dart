@@ -75,7 +75,7 @@ class _MainAppViewState extends State<MainAppView> {
             controller: pageController,
             children: [
               JournalPage(),
-              ChatPage(),
+              // ChatPage(),
               SummaryPage(),
               RankingPage(),
               ProfilePage(),

@@ -30,10 +30,10 @@ class _NavbarState extends State<Navbar> {
           icon: Icon(Icons.menu_book),
           label: 'Journal',
         ),
-        BottomNavigationBarItem(
-          icon: FaIcon(Icons.chat),
-          label: 'Chat',
-        ),
+        // BottomNavigationBarItem(
+        //   icon: FaIcon(Icons.chat),
+        //   label: 'Chat',
+        // ),
         BottomNavigationBarItem(
           icon: Icon(Icons.insert_chart),
           label: 'Summary',
